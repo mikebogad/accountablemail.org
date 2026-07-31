@@ -1,272 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Certificate of Mailing, end to end | Accountable Mail Association</title>
-<meta name="description" content="What a Certificate of Mailing proves, the difference between PS Form 3817, 3665, and 3606-D, completion rules, fees, and the electronic submission path.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
+#!/usr/bin/env bash
+# ============================================================================
+# Accountable Mail Association - content policy check
+# Run from the repo root:  ./scripts/check.sh
+# Exits non-zero on any violation, so it can gate a commit or a CI build.
+# ============================================================================
+set -uo pipefail
+cd "$(dirname "$0")/.."
 
-<header class="site">
-  <div class="wrap bar">
-    <a class="mark" href="index.html">
-      <span class="glyph">AM</span>
-      <span class="name">Accountable Mail<small>Association</small></span>
-    </a>
-    <nav class="main" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="topics.html">Knowledge center</a>
-      <a href="certified-mail.html">Certified Mail</a>
-      <a href="certificate-of-mailing.html" aria-current="page">Certificate of Mailing</a>
-      <a href="automated-com.html">Automated COM</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="community.html">Community</a>
-      <a href="about.html">About</a>
-    </nav>
-    <a class="btn" href="about.html#join">Join</a>
-  </div>
-</header>
+FAIL=0
+red()  { printf "\033[31m%s\033[0m\n" "$1"; }
+grn()  { printf "\033[32m%s\033[0m\n" "$1"; }
+head_() { printf "\n\033[1m%s\033[0m\n" "$1"; }
 
-<main id="main">
-  <div class="wrap">
-    <p class="crumb"><a href="index.html">Home</a> / <a href="topics.html">Knowledge center</a> / Certificate of Mailing</p>
-    <div class="article-head">
-      <p class="eyebrow">Pillar guide &nbsp;/&nbsp; Certificate of Mailing</p>
-      <h1>Certificate of Mailing, end to end</h1>
-      <p class="lede">The cheapest form of legal proof the Postal Service sells, and the most
-        frequently misapplied. This guide covers what a Certificate of Mailing actually proves,
-        which of the three forms you need, and how the electronic path works.</p>
-      <div class="byline">
-        <span>Reviewed July 2026</span>
-        <span>Reading time 7 minutes</span>
-        <span>Level: foundational</span>
-      </div>
-    </div>
-  </div>
+PAGES=$(ls *.html 2>/dev/null | grep -v '^_template')
 
-  <div class="wrap article-layout">
-    <aside class="toc">
-      <h4>On this page</h4>
-      <ol>
-        <li><a href="#proves">What it proves</a></li>
-        <li><a href="#notprove">What it does not prove</a></li>
-        <li><a href="#forms">The three forms</a></li>
-        <li><a href="#choosing">Choosing the right one</a></li>
-        <li><a href="#rules">Completion rules</a></li>
-        <li><a href="#fees">Fees</a></li>
-        <li><a href="#electronic">The electronic path</a></li>
-        <li><a href="#vs">Certificate of Mailing or Certified Mail</a></li>
-      </ol>
-    </aside>
+# ---------------------------------------------------------------------------
+head_ "1. Forbidden terms (vendor neutrality)"
+# Add any new company, product, partner, or customer name to this list.
+FORBIDDEN=(
+  "Easy Send" "EasySend" "Digitalized" "Krengeltech" "Krengel"
+  "GrayHair" "Gray Hair" "ConnectSuite" "Connect Suite"
+  "BlueCrest" "Quadient" "Solimar" "Pitney" "Neopost" "Bell and Howell"
+  "SimpleCertifiedMail" "Certified Mail Envelopes" "Walz"
+  "Fiserv" "State Farm" "Nordis" "Docufree" "Mortgage Connect" "CMSI"
+  # Note: federalregister.gov, govinfo.gov, and prc.gov are permitted sources.
+  # They are primary government documents, same standing as USPS publications.
+)
+for term in "${FORBIDDEN[@]}"; do
+  if grep -ril "$term" --include='*.html' --include='*.css' --include='*.md' . >/dev/null 2>&1; then
+    red "  FORBIDDEN TERM: '$term' found in:"
+    grep -ril "$term" --include='*.html' --include='*.css' . | grep -v CONTENT-POLICY | grep -v 'scripts/' | sed 's/^/    /'
+    FAIL=1
+  fi
+done
+[ $FAIL -eq 0 ] && grn "  clean"
 
-    <article class="prose">
+# ---------------------------------------------------------------------------
+head_ "2. Non-USPS outbound links"
+BADLINKS=$(grep -oh 'href="https\?://[^"]*"' $PAGES 2>/dev/null \
+  | sed 's/href="//; s/"$//' \
+  | grep -v 'usps.com' \
+  | grep -v 'usps.gov' \
+  | grep -v 'federalregister.gov' \
+  | grep -v 'govinfo.gov' \
+  | grep -v 'fonts.googleapis.com' \
+  | grep -v 'fonts.gstatic.com' \
+  | grep -v 'linkedin.com' \
+  | grep -v 'prc.gov' \
+  | sort -u)
+if [ -n "$BADLINKS" ]; then
+  red "  Review these outbound links. Only USPS, fonts, and LinkedIn are expected:"
+  echo "$BADLINKS" | sed 's/^/    /'
+  FAIL=1
+else
+  grn "  clean"
+fi
 
-      <h2 id="proves">What it proves</h2>
-      <p>A Certificate of Mailing is evidence that specific mailpieces were presented to the Postal
-        Service for mailing. It may be presented only at the time of mailing. Each form is postmarked,
-        or round dated, at the moment the mailing is presented, and the postmarked form is returned to
-        the mailer as their receipt.</p>
-      <p>That receipt establishes one fact with authority: on this date, this sender handed this
-        mailpiece, addressed to this recipient, to the United States Postal Service. For a very large
-        number of legal and regulatory obligations, that is exactly the fact in dispute. Notice
-        requirements are usually written around the date of mailing rather than the date of receipt,
-        which is what makes an inexpensive service into a durable compliance tool.</p>
+# ---------------------------------------------------------------------------
+head_ "3. Em dashes"
+if grep -l '—' *.html assets/*.css 2>/dev/null | grep -q .; then
+  red "  Em dashes found in:"
+  grep -l '—' *.html assets/*.css 2>/dev/null | sed 's/^/    /'
+  FAIL=1
+else
+  grn "  clean"
+fi
 
-      <div class="callout">
-        <h4>Why the mailing date matters more than the delivery date</h4>
-        <p>Many statutes, contracts, and regulations start a clock when notice is sent, not when it
-          arrives. Under those rules, proving the mailing date is the entire question, and a
-          recipient who never opened the envelope has no defense. Certificate of Mailing exists to
-          answer precisely that question, at a fraction of the cost of Certified Mail.</p>
-      </div>
+# ---------------------------------------------------------------------------
+head_ "4. Broken internal links"
+python3 - <<'PY'
+import re, os, glob, sys
+files = {os.path.basename(p) for p in glob.glob('*.html')}
+bad = []
+for p in glob.glob('*.html'):
+    if os.path.basename(p).startswith('_template'):
+        continue
+    for href in re.findall(r'href="([^"]+)"', open(p).read()):
+        if href.startswith(('http', 'mailto:', '#')):
+            continue
+        target = href.split('#')[0]
+        if not target:
+            continue
+        if target.startswith('assets/'):
+            if not os.path.exists(target):
+                bad.append((p, href))
+        elif target not in files:
+            bad.append((p, href))
+for p, h in bad:
+    print(f"    {p} -> {h}")
+sys.exit(1 if bad else 0)
+PY
+if [ $? -ne 0 ]; then red "  broken links above"; FAIL=1; else grn "  clean"; fi
 
-      <h2 id="notprove">What it does not prove</h2>
-      <p>Certificate of Mailing provides no record of delivery. None. The service ends at
-        acceptance. If your requirement is to demonstrate that someone received something, this is
-        the wrong service and you want <a href="certified-mail.html">Certified Mail</a>.</p>
-      <p>Just as important: the Postal Service does not retain copies of Certificate of Mailing
-        forms. The stamped receipt returned to you is the only evidence that will ever exist. There
-        is no USPS archive to request a duplicate from. If your copy is lost, the proof is gone.</p>
+# ---------------------------------------------------------------------------
+head_ "5. Topic pages missing a sources block"
+MISSING=""
+for f in $PAGES; do
+  case "$f" in
+    index.html|topics.html|about.html|community.html|glossary.html|news.html) continue ;;
+  esac
+  grep -q 'class="sources"' "$f" || MISSING="$MISSING $f"
+done
+if [ -n "$MISSING" ]; then
+  red "  Missing sources block:"; for f in $MISSING; do echo "    $f"; done; FAIL=1
+else
+  grn "  clean"
+fi
 
-      <div class="callout warn">
-        <h4>Two consequences worth planning around</h4>
-        <p>First, retention is entirely your organization's responsibility, for the full length of
-          whatever period governs the mailing. Second, a single point of failure in your filing
-          process is a single point of failure in your legal position. Build the archive before you
-          scale the volume.</p>
-      </div>
+# ---------------------------------------------------------------------------
+head_ "6. Pages missing a review date"
+MISSING=""
+for f in $PAGES; do
+  case "$f" in
+    index.html|about.html|community.html) continue ;;
+  esac
+  grep -q 'Reviewed\|Updated' "$f" || MISSING="$MISSING $f"
+done
+if [ -n "$MISSING" ]; then
+  red "  Missing review date:"; for f in $MISSING; do echo "    $f"; done; FAIL=1
+else
+  grn "  clean"
+fi
 
-      <h2 id="forms">The three forms</h2>
-      <p>Certificate of Mailing is a family of forms, not a single product.</p>
+# ---------------------------------------------------------------------------
+head_ "7. Unreplaced template placeholders"
+PH=$(grep -l 'PAGE TITLE\|SOURCE-URL\|RELATED-PAGE\|PARENT-PILLAR' $PAGES 2>/dev/null)
+if [ -n "$PH" ]; then
+  red "  Placeholder text still present in:"; echo "$PH" | sed 's/^/    /'; FAIL=1
+else
+  grn "  clean"
+fi
 
-      <h3>PS Form 3817, individual</h3>
-      <p>For fewer than three individual pieces presented at one time at a retail Post Office,
-        station, or branch. It names the addressee, so it provides per piece evidence. It is a
-        counter transaction and does not scale.</p>
-
-      <h3>PS Form 3665, firm sheet</h3>
-      <p>For three or more pieces listed together. Each sheet is round dated at the time of mailing
-        and returned to the mailer as the receipt. Because each listed piece names its addressee,
-        the firm sheet provides per recipient evidence at volume. This is the form that matters most
-        to compliance operations, and it is the one with an electronic path.</p>
-
-      <h3>PS Form 3606-D, Certificate of Bulk Mailing</h3>
-      <p>Specifies only the number of identical weight pieces mailed. It does not provide evidence
-        that a piece was mailed to any particular address, it provides no record of delivery, and
-        USPS retains no copies. It cannot be used as a certificate of mailing for individual pieces
-        or for itemized lists.</p>
-
-      <table>
-        <caption>Evidence provided by each form</caption>
-        <thead>
-          <tr><th scope="col" style="width:22%">Form</th><th scope="col" style="width:20%">Volume</th><th scope="col" style="width:30%">Names the addressee</th><th scope="col" style="width:28%">Electronic submission</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>PS Form 3817</strong></td><td>Fewer than three pieces</td><td>Yes, per piece</td><td>No, retail counter</td></tr>
-          <tr><td><strong>PS Form 3665</strong></td><td>Three or more pieces</td><td>Yes, per piece on the firm sheet</td><td>Yes, to PostalOne!, processed at the BMEU</td></tr>
-          <tr><td><strong>PS Form 3606-D</strong></td><td>Bulk, identical weight</td><td>No, count only</td><td>Yes, upload before presentment</td></tr>
-        </tbody>
-      </table>
-
-      <h2 id="choosing">Choosing the right one</h2>
-      <p>Work backward from the obligation rather than forward from the volume. Ask what fact you
-        will need to establish if this mailing is ever challenged.</p>
-      <ul>
-        <li><strong>You must show that a named person was notified.</strong> PS Form 3665 for volume,
-          PS Form 3817 for one or two pieces. A 3606-D will not do it.</li>
-        <li><strong>You must show a quantity was mailed on a date.</strong> PS Form 3606-D is
-          sufficient and cheaper.</li>
-        <li><strong>You must show the notice was received.</strong> Certificate of Mailing cannot
-          help. Use Certified Mail, with Return Receipt if a signature is required.</li>
-      </ul>
-
-      <h2 id="rules">Completion rules</h2>
-      <p>These are regulatory requirements, and acceptance clerks enforce them.</p>
-      <ul>
-        <li>The mailer completes the form. Entries must be typed, printed in ink or ballpoint pen, or
-          computer generated.</li>
-        <li>Any alteration must be initialed by both the mailer and the acceptance employee.</li>
-        <li>All unused portions of the addressee column must be obliterated with a diagonal line.</li>
-        <li>Forms must show the names and addresses of both sender and addressees, and may show the
-          postage paid.</li>
-        <li>The mailer may add invoice or order numbers to the certificate as a reference, which is a
-          useful hook for tying a receipt back to a case file.</li>
-      </ul>
-
-      <h2 id="fees">Fees</h2>
-      <p>The Certificate of Mailing fee is charged in addition to regular postage, and it applies to
-        each article on a Form 3817 or listed on a Form 3665 firm sheet, as well as to duplicate
-        copies of either form. Fees differ depending on whether the certificate is purchased for an
-        individual article or for an individual article with a firm mailing book. When postage
-        evidencing indicia pay the fee, they must show the full numerical value of the amount paid.
-        Current fees appear in Notice 123.</p>
-
-      <h2 id="electronic">The electronic path</h2>
-      <p>PS Form 3665 may be submitted electronically to PostalOne! and processed at the Business
-        Mail Entry Unit. PS Form 3606-D may be uploaded before the mailing is presented, and receives
-        a watermark date stamped receipt once the mailing is finalized. When PS Form 3665 is
-        submitted electronically, postage must be paid from an Enterprise Payment System account.</p>
-      <p>The full walkthrough, including the three submission paths and how to retrieve your round
-        stamped document, is in the <a href="automated-com.html">automated Certificate of Mailing
-        guide</a>.</p>
-
-      <h2 id="vs">Certificate of Mailing or Certified Mail</h2>
-      <table>
-        <caption>Comparing the two accountable services</caption>
-        <thead>
-          <tr><th scope="col" style="width:34%">Question</th><th scope="col" style="width:33%">Certificate of Mailing</th><th scope="col" style="width:33%">Certified Mail</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Proves you mailed it</td><td>Yes</td><td>Yes</td></tr>
-          <tr><td>Proves delivery was attempted</td><td>No</td><td>Yes</td></tr>
-          <tr><td>Produces a signature record</td><td>No</td><td>Yes, with Return Receipt</td></tr>
-          <tr><td>Trackable in transit</td><td>No</td><td>Yes</td></tr>
-          <tr><td>USPS retains a record</td><td>No</td><td>Yes, for a defined period</td></tr>
-          <tr><td>Relative cost</td><td>Low</td><td>Substantially higher</td></tr>
-          <tr><td>Typical use</td><td>Notice where the mailing date governs</td><td>Notice where receipt must be shown</td></tr>
-        </tbody>
-      </table>
-      <p>A well designed compliance program usually uses both, matched to what each individual
-        notice type actually has to prove. Sending everything Certified Mail is the most common and
-        most expensive mistake in accountable mail.</p>
-
-      <div class="sources">
-        <h4>Sources and further reading</h4>
-        <ol>
-          <li><a href="https://postalpro.usps.com/com" target="_blank" rel="noopener">Certificate of Mailing</a>
-            <span>PostalPro, USPS. Forms, completion rules, fees, and electronic submission.</span></li>
-          <li><a href="https://pe.usps.com/text/dmm300/503.htm" target="_blank" rel="noopener">Domestic Mail Manual 503, Extra Services</a>
-            <span>Postal Explorer, USPS. The governing regulation.</span></li>
-          <li><a href="https://pe.usps.com/text/qsg300/Q503.htm" target="_blank" rel="noopener">503 Quick Service Guide</a>
-            <span>Postal Explorer, USPS. Condensed reference.</span></li>
-          <li><a href="https://pe.usps.com/text/dmm300/Notice123.htm" target="_blank" rel="noopener">Notice 123, Price List</a>
-            <span>Postal Explorer, USPS. Current fees.</span></li>
-          <li><a href="https://postalpro.usps.com/automatedcomuserguide" target="_blank" rel="noopener">Automated Certificate of Mailing User Guide</a>
-            <span>PostalPro, USPS, April 2025.</span></li>
-        </ol>
-      </div>
-
-      <div class="next-up">
-        <a href="automated-com.html"><span>Go deeper</span><strong>Automated Certificate of Mailing &rarr;</strong></a>
-        <a href="certified-mail.html"><span>Pillar guide</span><strong>Certified Mail, end to end &rarr;</strong></a>
-      </div>
-    </article>
-  </div>
-</main>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <h4>Accountable Mail Association</h4>
-        <p style="margin:0 0 12px">A reference library and an industry voice for organizations that
-          mail with proof.</p>
-        <p style="margin:0"><a href="mailto:info@accountablemail.org">info@accountablemail.org</a></p>
-      </div>
-      <div>
-        <h4>Knowledge center</h4>
-        <ul>
-          <li><a href="topics.html">All topics</a></li>
-          <li><a href="certified-mail.html">Certified Mail</a></li>
-          <li><a href="certificate-of-mailing.html">Certificate of Mailing</a></li>
-          <li><a href="automated-com.html">Automated COM</a></li>
-          <li><a href="return-receipt.html">Return Receipt</a></li>
-          <li><a href="mailer-id-crid.html">Mailer IDs and CRIDs</a></li>
-          <li><a href="glossary.html">Glossary</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Association</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="community.html">Community and enrollment</a></li>
-          <li><a href="about.html#mtac">MTAC representation</a></li>
-          <li><a href="about.html#membership">Membership</a></li>
-          <li><a href="about.html#join">Apply to join</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>USPS sources</h4>
-        <ul>
-          <li><a href="https://postalpro.usps.com/com" target="_blank" rel="noopener">Certificate of Mailing</a></li>
-          <li><a href="https://postalpro.usps.com/certified-mail-guidebook" target="_blank" rel="noopener">Certified Mail Guidebook</a></li>
-          <li><a href="https://pe.usps.com/text/dmm300/503.htm" target="_blank" rel="noopener">DMM 503</a></li>
-          <li><a href="https://postalpro.usps.com/mtac" target="_blank" rel="noopener">MTAC</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="legal">
-      <span>&copy; 2026 Accountable Mail Association</span>
-      <span>Certified Mail, PostalOne!, Mail.dat, and related marks belong to the United States Postal Service. This association is independent and is not affiliated with USPS.</span>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+echo
+if [ $FAIL -eq 0 ]; then
+  grn "PASS. Safe to commit."
+else
+  red "FAIL. Fix the items above before committing."
+fi
+exit $FAIL
