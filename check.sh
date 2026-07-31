@@ -157,11 +157,16 @@ for f in $PAGES; do
 done
 # Stale count language. The forms table and submission paths have both changed size before.
 for f in $PAGES; do
-  if grep -q 'three forms' "$f"; then
-    red "  $f says \"three forms\". Check it against the actual table."; FORMFAIL=1
+  if grep -qi 'three forms\|three very different\|which of the three' "$f"; then
+    red "  $f uses a stale form count. Check it against the actual table."; FORMFAIL=1
   fi
-  if grep -q 'three submission paths\|three submission channels' "$f"; then
+  if grep -qi 'three submission paths\|three submission channels' "$f"; then
     red "  $f says three submission paths. Automated COM uses two."; FORMFAIL=1
+  fi
+  # Any page listing the COM forms should include PS Form 3877, which is the one
+  # most often left out because it is not technically a Certificate of Mailing form.
+  if grep -q '3606-D' "$f" && grep -q '3665' "$f" && ! grep -q '3877' "$f"; then
+    red "  $f lists the COM forms but omits PS Form 3877."; FORMFAIL=1
   fi
 done
 # PS Form 3665 should carry its official title at least once per page that names it.
