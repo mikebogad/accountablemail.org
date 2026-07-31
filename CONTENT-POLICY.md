@@ -1,280 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Certified Mail, end to end | Accountable Mail Association</title>
-<meta name="description" content="What Certified Mail includes, how the delivery record works, green card against electronic Return Receipt, Restricted Delivery, delivery outcomes, and sending at volume.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
+# Content policy
 
-<header class="site">
-  <div class="wrap bar">
-    <a class="mark" href="index.html">
-      <span class="glyph">AM</span>
-      <span class="name">Accountable Mail<small>Association</small></span>
-    </a>
-    <nav class="main" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="topics.html">Knowledge center</a>
-      <a href="certified-mail.html" aria-current="page">Certified Mail</a>
-      <a href="certificate-of-mailing.html">Certificate of Mailing</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="news.html">News</a>
-      <a href="community.html">Community</a>
-      <a href="about.html">About</a>
-    </nav>
-    <a class="btn" href="about.html#join">Join</a>
-  </div>
-</header>
+This is a trade association website. It has to read as one, to members, to USPS, and to the other
+MTAC member associations. Everything below is a hard rule, not a preference.
 
-<main id="main">
-  <div class="wrap">
-    <p class="crumb"><a href="index.html">Home</a> / <a href="topics.html">Knowledge center</a> / Certified Mail</p>
-    <div class="article-head">
-      <p class="eyebrow">Pillar guide &nbsp;/&nbsp; Certified Mail</p>
-      <h1>Certified Mail, end to end</h1>
-      <p class="lede">The default choice for legal and regulatory notice, and a service most
-        organizations buy more of than they need. This guide covers what Certified Mail includes,
-        what the delivery record actually contains, and where the service reaches its limits.</p>
-      <div class="byline">
-        <span>Reviewed July 2026</span>
-        <span>Reading time 8 minutes</span>
-        <span>Level: foundational</span>
-      </div>
-    </div>
-  </div>
+## 1. Vendor neutrality
 
-  <div class="wrap article-layout">
-    <aside class="toc">
-      <h4>On this page</h4>
-      <ol>
-        <li><a href="#what">What the service includes</a></li>
-        <li><a href="#record">The delivery record</a></li>
-        <li><a href="#receipt">Return Receipt, two versions</a></li>
-        <li><a href="#extras">Restricted Delivery and signatures</a></li>
-        <li><a href="#outcomes">When delivery does not happen</a></li>
-        <li><a href="#volume">Sending Certified Mail at volume</a></li>
-        <li><a href="#3877">The Firm Mailing Book</a></li>
-        <li><a href="#data">Getting your data back</a></li>
-        <li><a href="#pitfalls">Where programs go wrong</a></li>
-      </ol>
-    </aside>
+**No commercial product, platform, or software company may be named anywhere on this site.** No
+exceptions for the founder's employer, for members, for sponsors, or for partners.
 
-    <article class="prose">
+The only permitted exception: a product name that appears because USPS documentation names it as
+part of the postal infrastructure. Examples of permitted names, all USPS systems: PostalOne!,
+Mail.dat, Mail.XML, Postal Wizard, Business Customer Gateway, Enterprise Payment System, Informed
+Visibility, Informed Delivery.
 
-      <h2 id="what">What the service includes</h2>
-      <p>Certified Mail is an extra service purchased on top of First-Class Mail or Priority Mail. It
-        adds three things to the underlying postage: a unique article number that identifies the
-        piece, a mailing receipt for the sender, and a delivery record that the Postal Service
-        maintains and makes available.</p>
-      <p>Because it rides on top of a mail class rather than replacing one, the base postage rules
-        still apply. That distinction matters more than it sounds, because it means the choices you
-        make about how the underlying mail is prepared and paid for are separate from the choices you
-        make about the accountable service, and they can be optimized independently.</p>
+Specifically forbidden, and checked automatically by `scripts/check.sh`:
 
-      <div class="callout plain">
-        <h4>Certified Mail is a service, not a mail class</h4>
-        <p>You are buying an add-on to First-Class Mail or Priority Mail. Every question about
-          presort, permit, and postage payment is a separate question from the accountable service
-          question, and treating them as one bundled decision is where a lot of avoidable cost hides.</p>
-      </div>
+- Any reference to the founder's employer or its products
+- Any Certified Mail or Certificate of Mailing software vendor, including competitors
+- Any print, mail, or postal equipment manufacturer
+- Any partner or channel relationship, named or implied
+- Any customer or prospect of any member
 
-      <h2 id="record">The delivery record</h2>
-      <p>The delivery record is the reason to pay for Certified Mail. USPS records the disposition of
-        the piece and retains that record for a defined period, which means that unlike Certificate
-        of Mailing, there is a Postal Service copy to fall back on.</p>
-      <p>What the record establishes, in the base service, is that delivery occurred or that delivery
-        was attempted, along with the date. What it does not establish, without additional services,
-        is who signed for it.</p>
+If a page needs to describe a category of tool, describe the category: "mail preparation software,"
+"a Certified Mail platform," "your systems of record." Never the brand.
 
-      <h2 id="receipt">Return Receipt, two versions</h2>
-      <p>Return Receipt is a separate extra service that captures the recipient's signature. It comes
-        in two forms, and choosing between them is one of the more consequential decisions in an
-        accountable mail program.</p>
+**Why this rule is absolute.** The founder works for a supplier in this market. That fact is public
+and fine. What is not fine is an association site that reads like a content-marketing funnel, because
+that is the first thing a skeptical MTAC association executive will look for, and finding it would
+cost more credibility than any amount of traffic is worth.
 
-      <h3>PS Form 3811, the green card</h3>
-      <p>A physical card attached to the mailpiece. The recipient signs it, and the card travels back
-        through the mail to the sender. The output is a piece of paper with a real signature on it,
-        which is the format most familiar to legal teams and the one most often specified by name in
-        older policies and contracts.</p>
+## 2. Sourcing
 
-      <h3>Electronic Return Receipt</h3>
-      <p>The signature is captured at delivery and returned electronically rather than as a physical
-        card. The output is a document, delivered without the round trip through the mailstream.</p>
+Every factual claim about postal regulation, pricing, forms, or systems must trace to a USPS source.
 
-      <table>
-        <caption>Comparing the two Return Receipt options</caption>
-        <thead>
-          <tr><th scope="col" style="width:26%">Consideration</th><th scope="col" style="width:37%">Green card, PS Form 3811</th><th scope="col" style="width:37%">Electronic Return Receipt</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Output format</td><td>Physical card with wet signature</td><td>Electronic document</td></tr>
-          <tr><td>Return path</td><td>Back through the mailstream</td><td>Electronic delivery</td></tr>
-          <tr><td>Turnaround</td><td>Days, and cards do get lost</td><td>Faster and more consistent</td></tr>
-          <tr><td>Handling on receipt</td><td>Sort, match, scan, file</td><td>Archive directly</td></tr>
-          <tr><td>Relative fee</td><td>Higher</td><td>Lower</td></tr>
-          <tr><td>Policy acceptance</td><td>Universally accepted, sometimes named explicitly in contracts</td><td>Widely accepted, but check older policy language</td></tr>
-        </tbody>
-      </table>
+- Every topic page carries a `<div class="sources">` block at the end, listing the specific USPS
+  document with a working link and a note on what it supports.
+- Prefer PostalPro, Postal Explorer, usps.com, and USPS FAQ over any third party.
+- Never cite a vendor blog as a source, even when it is correct.
+- If a fact cannot be verified in a USPS document, either leave it out or mark it clearly as
+  approximate and subject to change.
+- Prices go stale. Always state the effective date and link Notice 123.
 
-      <div class="callout">
-        <h4>Check the source of the requirement</h4>
-        <p>Organizations frequently keep using green cards because a policy document written years
-          ago says "return receipt requested" and someone reasonably read that as the physical card.
-          Before changing anything, find the actual governing language, whether it is a statute, a
-          regulation, a contract, or an internal policy that can simply be updated. The answer is
-          often that nothing external requires the card.</p>
-      </div>
+## 3. Review dates
 
-      <h2 id="extras">Restricted Delivery and signatures</h2>
-      <p>Restricted Delivery limits who may accept the piece, which matters when a statute requires
-        delivery to a named individual rather than to anyone at the address. Adult Signature services
-        impose an age requirement on the person signing. Each is a separate fee, and each is
-        occasionally purchased out of caution rather than requirement. Confirm that a governing rule
-        actually calls for it before adding it at volume, because the per piece cost compounds
-        quickly.</p>
+Every topic page shows a "Reviewed MONTH YEAR" line in the byline. Re-verify pages on this schedule:
 
-      <h2 id="outcomes">When delivery does not happen</h2>
-      <p>A meaningful percentage of Certified Mail is never delivered, and the reasons carry different
-        legal weight. Your data needs to distinguish between them, and many systems flatten them into
-        a single "not delivered" status, which destroys exactly the information a court would want.</p>
-      <ul>
-        <li><strong>Attempted, notice left.</strong> USPS tried and left a notice. The recipient may
-          still collect the piece.</li>
-        <li><strong>Refused.</strong> The recipient declined to accept it. In many jurisdictions
-          refusal is strong evidence that notice was effective.</li>
-        <li><strong>Unclaimed.</strong> The recipient never collected it within the hold period.</li>
-        <li><strong>Undeliverable as addressed.</strong> An address quality problem, which is your
-          problem rather than the recipient's, and which usually undermines a notice claim.</li>
-      </ul>
-      <p>The distinction between refused and undeliverable as addressed is often the difference
-        between a defensible notice and a failed one. Preserve it.</p>
+| Trigger | Action |
+| --- | --- |
+| Any USPS price change | Re-check every page with a fee in it, same week |
+| DMM revision affecting 503 | Re-check both pillar pages and automated COM |
+| Quarterly | Spot-check the four oldest pages |
+| Annually | Full pass on everything |
 
-      <h2 id="volume">Sending Certified Mail at volume</h2>
-      <p>At retail, Certified Mail is a counter transaction with a paper receipt. At volume, it
-        becomes a data operation. Article numbers must be generated and applied, piece data must reach
-        USPS electronically, and scan events must come back into a system where someone can find them.</p>
-      <p>The mechanics of that electronic exchange, including how accountable mail data reaches USPS
-        and how tracking data returns, are covered in the data and systems track of the
-        <a href="topics.html">knowledge center</a>.</p>
+## 4. Tone and house style
 
-      <h2 id="3877">The Firm Mailing Book</h2>
-      <p>PS Form 3877 is a multipage bound book with sheets for entering multiple article numbers for
-        accountable mail, including Certified Mail, COD, Priority Mail Express, and insured pieces.
-        Using the book eliminates the need to generate an individual mailing receipt for each article,
-        which is the whole point of it at volume.</p>
-      <p>It is not technically a Certificate of Mailing form, and USPS is explicit that for listing
-        Certificate of Mailing you should use PS Form 3665 or PS Form 3606-D instead. But PS Form 3877
-        can be uploaded through Postal Wizard or Mail.dat, which puts it on the same electronic
-        infrastructure as electronically submitted
-        <a href="certificate-of-mailing.html">Certificate of Mailing</a>. Operations modernizing one
-        are almost always in a position to modernize the other at the same time.</p>
+- No em dashes. Commas for parenthetical asides, semicolons for transitional breaks, colons for
+  labels.
+- Oxford commas, always.
+- "Such as," not "like."
+- Hyphenate compound adjectives.
+- "The State of [X]" when naming a state government.
+- Active voice.
+- No brochure language. No "leverage," "solution," "empower," "seamless," or "best-in-class."
+- Write for a mail operations supervisor, not for a search engine.
 
-      <h2 id="data">Getting your data back</h2>
-      <p>Certified Mail generates scan events, and those events are only useful if they reach the
-        system where your business actually works. Two things determine whether they do: your USPS
-        account structure, and your access credentials.</p>
-      <p>Account structure is the one that quietly breaks. Mailer IDs parented under multiple
-        Customer Registration IDs can produce a situation where a mailer is denied access to data
-        generated by its own mail. The fix is usually re-parenting rather than creating new
-        identifiers, and it is an administrative process worth starting before it becomes urgent.</p>
+## 5. What the site does not do
 
-      <h2 id="pitfalls">Where programs go wrong</h2>
-      <ol>
-        <li><strong>Buying Certified Mail when Certificate of Mailing would satisfy the requirement.</strong>
-          The most expensive habit in accountable mail. Audit your notice types against what each one
-          actually has to prove.</li>
-        <li><strong>Adding Return Receipt or Restricted Delivery by default.</strong> Each is a
-          separate fee and each should be traceable to a governing requirement.</li>
-        <li><strong>Flattening delivery outcomes.</strong> Refused and undeliverable are not the same
-          event. Keep them separate in your data.</li>
-        <li><strong>Never auditing the underlying postage.</strong> The accountable service and the
-          base postage are independent decisions.</li>
-        <li><strong>Discovering an account structure problem during an audit.</strong> Verify that you
-          can actually retrieve your own tracking data before you need to.</li>
-      </ol>
+- Does not sell or share contact information
+- Does not accept paid placement in the knowledge center
+- Does not endorse, certify, or recommend commercial products
+- Does not publish member volumes, pricing, or operational details without written permission
 
-      <div class="sources">
-        <h4>Sources and further reading</h4>
-        <ol>
-          <li><a href="https://postalpro.usps.com/certified-mail-guidebook" target="_blank" rel="noopener">Certified Mail Guidebook</a>
-            <span>PostalPro, USPS. The primary reference for the service.</span></li>
-          <li><a href="https://pe.usps.com/text/dmm300/503.htm" target="_blank" rel="noopener">Domestic Mail Manual 503, Extra Services</a>
-            <span>Postal Explorer, USPS. Certified Mail, Return Receipt, and Restricted Delivery.</span></li>
-          <li><a href="https://pe.usps.com/text/dmm300/Notice123.htm" target="_blank" rel="noopener">Notice 123, Price List</a>
-            <span>Postal Explorer, USPS. Current extra service fees.</span></li>
-          <li><a href="https://postalpro.usps.com/com" target="_blank" rel="noopener">Certificate of Mailing</a>
-            <span>PostalPro, USPS. Includes PS Form 3877 guidance.</span></li>
-          <li><a href="https://faq.usps.com/s/article/What-is-a-Firm-Mailing-Book" target="_blank" rel="noopener">What is a Firm Mailing Book</a>
-            <span>USPS FAQ. PS Form 3877.</span></li>
-          <li><a href="https://postalpro.usps.com/visibility-and-tracking" target="_blank" rel="noopener">Visibility and Tracking</a>
-            <span>PostalPro, USPS. Scan data and mailer access.</span></li>
-        </ol>
-      </div>
+## Before every commit
 
-      <div class="next-up">
-        <a href="certificate-of-mailing.html"><span>Pillar guide</span><strong>Certificate of Mailing, end to end &rarr;</strong></a>
-        <a href="glossary.html"><span>Reference</span><strong>Accountable mail glossary &rarr;</strong></a>
-      </div>
-    </article>
-  </div>
-</main>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <h4>Accountable Mail Association</h4>
-        <p style="margin:0 0 12px">A reference library and an industry voice for organizations that
-          mail with proof.</p>
-        <p style="margin:0"><a href="mailto:info@accountablemail.org">info@accountablemail.org</a></p>
-      </div>
-      <div>
-        <h4>Knowledge center</h4>
-        <ul>
-          <li><a href="topics.html">All topics</a></li>
-          <li><a href="certified-mail.html">Certified Mail</a></li>
-          <li><a href="certificate-of-mailing.html">Certificate of Mailing</a></li>
-          <li><a href="return-receipt.html">Return Receipt</a></li>
-          <li><a href="mailer-id-crid.html">Mailer IDs and CRIDs</a></li>
-          <li><a href="postmarks.html">DMM 608.11 postmarks</a></li>
-          <li><a href="certified-mail-volume.html">Volume data</a></li>
-          <li><a href="glossary.html">Glossary</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Association</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="news.html">News and updates</a></li>
-          <li><a href="community.html">Community and enrollment</a></li>
-          <li><a href="about.html#mtac">MTAC representation</a></li>
-          <li><a href="about.html#membership">Membership</a></li>
-          <li><a href="about.html#join">Apply to join</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>USPS sources</h4>
-        <ul>
-          <li><a href="https://postalpro.usps.com/com" target="_blank" rel="noopener">Certificate of Mailing</a></li>
-          <li><a href="https://postalpro.usps.com/certified-mail-guidebook" target="_blank" rel="noopener">Certified Mail Guidebook</a></li>
-          <li><a href="https://pe.usps.com/text/dmm300/503.htm" target="_blank" rel="noopener">DMM 503</a></li>
-          <li><a href="https://postalpro.usps.com/mtac" target="_blank" rel="noopener">MTAC</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="legal">
-      <span>&copy; 2026 Accountable Mail Association</span>
-      <span>Certified Mail, PostalOne!, Mail.dat, and related marks belong to the United States Postal Service. This association is independent and is not affiliated with USPS.</span>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+Run `./scripts/check.sh`. It fails the build on forbidden terms, em dashes, broken internal links,
+and topic pages missing a sources block.

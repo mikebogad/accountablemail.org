@@ -57,7 +57,7 @@
       <ol>
         <li><a href="#what">What automation means here</a></li>
         <li><a href="#forms">Which forms can go electronic</a></li>
-        <li><a href="#paths">Three submission paths</a></li>
+        <li><a href="#paths">Two submission paths</a></li>
         <li><a href="#process">The process, step by step</a></li>
         <li><a href="#payment">Payment and EPS</a></li>
         <li><a href="#receipt">Getting your round stamped proof</a></li>
@@ -112,14 +112,14 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>PS Form 3817</strong><br><code>Individual</code></td>
+            <td><strong>PS Form 3817</strong><br><code>Paper only</code></td>
             <td>Fewer than three individual pieces, presented at one time at a retail Post Office,
               station, or branch.</td>
             <td>Per piece, with the addressee named.</td>
             <td>No. Retail counter transaction.</td>
           </tr>
           <tr>
-            <td><strong>PS Form 3665</strong><br><code>Firm sheet</code></td>
+            <td><strong>PS Form 3665</strong><br><code>Firm book</code></td>
             <td>Three or more pieces listed together on a firm sheet.</td>
             <td>Per piece, with each addressee named. This is the workhorse for volume mailers.</td>
             <td><strong>Yes.</strong> May be submitted electronically to PostalOne! and processed at
@@ -135,8 +135,8 @@
               date stamped receipt after the mailing is finalized.</td>
           </tr>
           <tr>
-            <td><strong>PS Form 3877</strong><br><code>Firm book</code></td>
-            <td>Firm Mailing Book. Lists article numbers for accountable mail such as Certified
+            <td><strong>PS Form 3877</strong><br><code>Acct. firm book</code></td>
+            <td>Firm Mailing Book for Accountable Mail. Lists article numbers for accountable mail such as Certified
               Mail, COD, Priority Mail Express, and insured pieces.</td>
             <td>Per article, by article number. Not technically a Certificate of Mailing form.</td>
             <td><strong>Yes.</strong> Available for upload via Postal Wizard or Mail.dat.</td>
@@ -153,10 +153,10 @@
           it, and you may not discover that until someone challenges it. Use PS Form 3665.</p>
       </div>
 
-      <h2 id="paths">Three submission paths</h2>
-      <p>PostalOne! accepts electronic documentation through three channels. They are not equivalent
-        in capability, and the right choice depends almost entirely on your volume and whether you
-        have mailing software.</p>
+      <h2 id="paths">Two submission paths</h2>
+      <p>Automated Certificate of Mailing reaches PostalOne! through two channels. They are not
+        equivalent in capability, and the right choice depends almost entirely on your volume and
+        whether you have mailing software.</p>
 
       <h3>Postal Wizard</h3>
       <p>Manual entry into the PostalOne! website through the Business Customer Gateway. It supports
@@ -171,10 +171,14 @@
         takes. Mail.dat submitters must complete testing in the Testing Environment for Mailers
         before going live in production.</p>
 
-      <h3>Mail.XML</h3>
-      <p>A messaging format available in more advanced software packages that sends only the
-        required mailing information directly to USPS. Like Mail.dat, it requires testing
-        certification first. Fewer accountable mail workflows use it, but it is a legitimate path.</p>
+      <div class="callout warn">
+        <h4>Mail.XML is not an option here</h4>
+        <p>USPS lists three general eDoc channels: Postal Wizard, Mail.dat, and Mail.XML. Automated
+          Certificate of Mailing uses only the first two. USPS documentation for PS Form 3877 states
+          it is available for upload via Postal Wizard or Mail.dat, and the rulemaking establishing
+          the automated option for PS Form 3606-D, PS Form 3665, and PS Form 3877 describes upload to
+          PostalOne! with payment through EPS. Do not plan a Mail.XML path for COM.</p>
+      </div>
 
       <table>
         <caption>Choosing a submission path</caption>
@@ -184,8 +188,7 @@
         <tbody>
           <tr><td><strong>Postal Wizard</strong></td><td>Low volume, occasional mailings, pilots</td><td>Business Customer Gateway account</td><td>Manual entry, simple mailings, Full-Service under 10,000 pieces</td></tr>
           <tr><td><strong>Mail.dat</strong></td><td>Production volume, recurring mailings</td><td>Mailing software and TEM certification</td><td>None in practice. This is the standard.</td></tr>
-          <tr><td><strong>Mail.XML</strong></td><td>Systems integration, real time messaging</td><td>Advanced software and TEM certification</td><td>Smaller vendor support base for accountable mail</td></tr>
-        </tbody>
+                  </tbody>
       </table>
 
       <h2 id="process">The process, step by step</h2>
@@ -274,7 +277,7 @@
           on this list.</li>
         <li><strong>Leaving the EPS account until last.</strong> Electronic 3665 submission requires
           it. Start it early.</li>
-        <li><strong>Skipping certification planning.</strong> Mail.dat and Mail.XML submitters must
+        <li><strong>Skipping certification planning.</strong> Mail.dat submitters must
           pass through the Testing Environment for Mailers first. Build the schedule around it.</li>
         <li><strong>Nobody owns receipt retrieval.</strong> Assign it, monitor it, and alert on
           missing documents the same way you would alert on a failed job.</li>
@@ -325,7 +328,7 @@
           <li><a href="https://postalpro.usps.com/node/13318" target="_blank" rel="noopener">COM Automated Process webinar</a>
             <span>PostalPro, USPS, September 2024.</span></li>
           <li><a href="https://postalpro.usps.com/mailing/edoc" target="_blank" rel="noopener">Electronic Documentation (eDoc)</a>
-            <span>PostalPro, USPS. Postal Wizard, Mail.dat, and Mail.XML submission paths.</span></li>
+            <span>PostalPro, USPS. The three general eDoc channels, of which COM uses two.</span></li>
           <li><a href="https://pe.usps.com/text/dmm300/503.htm" target="_blank" rel="noopener">Domestic Mail Manual 503, Extra Services</a>
             <span>Postal Explorer, USPS. The governing regulation.</span></li>
           <li><a href="https://pe.usps.com/text/dmm300/Notice123.htm" target="_blank" rel="noopener">Notice 123, Price List</a>
