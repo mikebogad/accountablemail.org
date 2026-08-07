@@ -25,8 +25,10 @@ is the reason this site works.
 ├── community.html             LinkedIn hub and free enrollment
 ├── about.html                 Mission, MTAC, membership, board, join
 ├── _template-topic.html       Copy this to add a page
+├── CNAME                      Custom domain for GitHub Pages
 ├── assets/
-│   └── site.css               All styling, shared by every page
+│   ├── site.css               All styling, shared by every page
+│   └── share.png              1200x630 Open Graph card for LinkedIn previews
 ├── scripts/
 │   └── check.sh               Content policy check, run before every commit
 ├── GETTING-ONLINE.md          START HERE if you do not use the command line
@@ -68,9 +70,13 @@ cp _template-topic.html restricted-delivery.html
 
 Then:
 
-1. Update the card in `topics.html`, changing `class="topic soon"` to `class="topic"` and adding the
-   `href`.
-2. Add it to the footer list in every page, or run a find and replace across the repo.
+1. Update the card in `topics.html`, adding the `href` and a `pill live` "Published" badge.
+1b. Replace `PAGE-FILENAME.html` in the `canonical` and `og:url` tags with the real filename, and
+   update `og:title` and `og:description`. Check 7 fails on the placeholder and check 10 fails on a
+   wrong URL, so neither can ship by accident.
+2. Add it to the footer list in every page, or run a find and replace across the repo. Check 9
+   compares every nav and footer against `index.html`, so a page you miss will fail the build
+   rather than drift quietly.
 3. Run the check.
 4. Commit.
 
@@ -85,7 +91,7 @@ git push
 
 ## The content check
 
-`scripts/check.sh` enforces seven things and exits non-zero on any failure:
+`scripts/check.sh` enforces ten things and exits non-zero on any failure:
 
 1. No forbidden vendor, partner, or customer names
 2. No outbound links except USPS, Google Fonts, and LinkedIn
@@ -94,6 +100,9 @@ git push
 5. Every topic page has a sources block
 6. Every topic page has a review date
 7. No unreplaced template placeholders
+8. Form-name accuracy against FORM-NAMES.md
+9. Nav and footer identical to `index.html` on every page, including the template
+10. Canonical, Open Graph, and Twitter card tags present and pointing at the right page
 
 Run it before every commit:
 

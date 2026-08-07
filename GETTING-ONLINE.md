@@ -170,15 +170,17 @@ Every time you want to edit the site:
 
 Skip this until you have bought `accountablemail.org` or whichever name you choose.
 
-1. Buy the domain from any registrar.
-2. In your repository, click **Add file**, then **Create new file**.
-3. Name the file exactly `CNAME`, in capitals, with no file extension.
-4. In the body, type only your domain, with no `https://` and no `www`:
-   ```
-   accountablemail.org
-   ```
+1. Buy the domain from any registrar. Done.
+2. A `CNAME` file already exists in the repository root containing `accountablemail.org`. If you
+   registered a different name, edit that file; it must contain only the domain, with no
+   `https://` and no `www`.
+3. Skip to step 6 if the file is already correct.
+4. To recreate it: **Add file**, **Create new file**, name it exactly `CNAME` in capitals with no
+   extension, and put only the domain in the body.
 5. Commit.
-6. At your domain registrar, find the DNS settings and add these five records:
+6. At your domain registrar, find the DNS settings and add these records. The four A records are
+   required. The four AAAA records are IPv6 and are recommended, not required. The CNAME makes
+   `www` work as well as the bare domain.
 
    | Type | Name or Host | Value |
    | --- | --- | --- |
@@ -186,11 +188,26 @@ Skip this until you have bought `accountablemail.org` or whichever name you choo
    | A | @ | 185.199.109.153 |
    | A | @ | 185.199.110.153 |
    | A | @ | 185.199.111.153 |
+   | AAAA | @ | 2606:50c0:8000::153 |
+   | AAAA | @ | 2606:50c0:8001::153 |
+   | AAAA | @ | 2606:50c0:8002::153 |
+   | AAAA | @ | 2606:50c0:8003::153 |
    | CNAME | www | YOURUSERNAME.github.io |
 
-7. Go back to **Settings**, then **Pages**, type your domain into the **Custom domain** box, and
-   click **Save**.
-8. Wait. DNS can take a few hours. Once the **Enforce HTTPS** checkbox becomes available, tick it.
+   If your registrar created a default A record or a parking-page record for `@`, delete it first.
+   Do not use a wildcard record such as `*.accountablemail.org`; GitHub warns that wildcards expose
+   you to domain takeover.
+
+7. Verify the domain first. Under your GitHub profile **Settings**, then **Pages**, add and verify
+   `accountablemail.org`. GitHub gives you a TXT record to add at your registrar. This is optional
+   but GitHub recommends it, because it prevents anyone else from pointing the domain at their own
+   repository if yours is ever removed.
+8. Go back to the repository **Settings**, then **Pages**, type your domain into the **Custom
+   domain** box, and click **Save**. The `CNAME` file in the repository already contains the domain,
+   so this step should validate quickly.
+9. Wait. DNS can take up to 24 hours. Once the **Enforce HTTPS** checkbox becomes available, tick
+   it. If HTTPS fails on either the bare domain or `www`, remove the custom domain, save, re-add it,
+   and save again; that forces GitHub to reissue a certificate covering both.
 
 Confirm those four IP addresses against GitHub's current documentation before you rely on them,
 because GitHub does change them occasionally.
