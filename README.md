@@ -21,7 +21,7 @@ is the reason this site works.
 ├── automated-com.html         Flagship explainer
 ├── return-receipt.html        Topic page
 ├── mailer-id-crid.html        Topic page
-├── glossary.html              37-term reference
+├── glossary.html              39-term reference
 ├── community.html             LinkedIn hub and free enrollment
 ├── about.html                 Mission, MTAC, membership, board, join
 ├── _template-topic.html       Copy this to add a page
